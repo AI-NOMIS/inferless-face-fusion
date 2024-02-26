@@ -4,14 +4,14 @@ from modelscope.pipelines import pipeline
 import base64
 
 
-class Predictor:
-    def setup(self):
+class InferlessPythonModel:
+    def initialize(self):
         self.image_face_fusion = pipeline(
             "image-face-fusion",
             "/var/nfs-mount/weigts-volume/face-fusion/cv_unet-image-face-fusion_damo",
         )
 
-    def predict(self, inputs):
+    def infer(self, inputs):
         usr_img = Image.open(inputs["user_img"]).convert("RGB")
         temp_img = Image.open(inputs["template_img"]).convert("RGB")
 
@@ -25,3 +25,6 @@ class Predictor:
             img_data = img_file.read()
 
         return {"output_image": base64.b64encode(img_data).decode("utf-8")}
+
+    def finalize(self):
+        pass
