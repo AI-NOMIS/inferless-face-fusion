@@ -11,9 +11,9 @@ class Predictor:
             "/var/nfs-mount/weigts-volume/face-fusion/cv_unet-image-face-fusion_damo",
         )
 
-    def predict(self, user_img: str, template_img: str) -> str:
-        usr_img = Image.open(str(user_img)).convert("RGB")
-        temp_img = Image.open(str(template_img)).convert("RGB")
+    def predict(self, inputs):
+        usr_img = Image.open(inputs["user_img"]).convert("RGB")
+        temp_img = Image.open(inputs["template_img"]).convert("RGB")
 
         input_data = {"template": usr_img, "user": temp_img}
 
@@ -24,4 +24,4 @@ class Predictor:
         with open(output_path, "rb") as img_file:
             img_data = img_file.read()
 
-        return base64.b64encode(img_data).decode("utf-8")
+        return {"output_image": base64.b64encode(img_data).decode("utf-8")}
