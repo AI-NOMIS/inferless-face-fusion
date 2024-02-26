@@ -1,0 +1,34 @@
+build:
+  system_packages:
+    - "ffmpeg"
+    - "libgl1-mesa-glx"
+    - "libglib2.0-0"
+  python_packages:
+    - "torch"
+    - "torchvision"
+    - "torchaudio"
+    - tensorflow-gpu==2.9
+    - addict
+    - attrs
+    - einops
+    - numpy
+    - oss2
+    - pandas
+    - scipy
+    - pyyaml
+    - yapf
+    - setuptools
+    - datasets>=2.8.0,<=2.13.0
+    - filelock>=3.3.0
+    - gast>=0.2.2
+    - Pillow>=6.2.0
+    - pyarrow>=6.0.0,!=9.0.0
+    - python-dateutil>=2.1
+    - requests>=2.25
+    - simplejson>=3.3.0
+    - sortedcontainers>=1.5.9
+    - tqdm>=4.64.0
+    - urllib3>=1.26
+    - "opencv-python"
+    - timm
+    - matplotlib
