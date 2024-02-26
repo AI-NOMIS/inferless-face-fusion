@@ -2,6 +2,8 @@ import cv2
 from PIL import Image
 from modelscope.pipelines import pipeline
 import base64
+from io import BytesIO
+import requests
 
 
 class InferlessPythonModel:
@@ -12,8 +14,8 @@ class InferlessPythonModel:
         )
 
     def infer(self, inputs):
-        usr_img = Image.open(inputs["user_img"]).convert("RGB")
-        temp_img = Image.open(inputs["template_img"]).convert("RGB")
+        usr_img = Image.open(BytesIO(requests.get(inputs["user_img"]).content)).convert("RGB")
+        temp_img = Image.open(BytesIO(requests.get(inputs["template_img"]).content)).convert("RGB")
 
         input_data = {"template": usr_img, "user": temp_img}
 
